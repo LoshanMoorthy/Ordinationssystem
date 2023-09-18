@@ -1,14 +1,12 @@
 package controller;
 
+import java.lang.foreign.MemoryLayout;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import ordination.DagligFast;
-import ordination.DagligSkaev;
-import ordination.Laegemiddel;
-import ordination.PN;
-import ordination.Patient;
+import ordination.*;
 import storage.Storage;
 
 import javax.xml.transform.dom.DOMSource;
@@ -61,7 +59,7 @@ public class Controller {
 		if (startDen.isAfter(slutDen)){
 			throw new IllegalArgumentException();
 		}
-		DagligFast dagligFast = new DagligFast(startDen, slutDen, laegemiddel);
+		DagligFast dagligFast = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
 		patient.addOrdination(dagligFast);
 
 		return dagligFast;
@@ -129,11 +127,24 @@ public class Controller {
 	 */
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
-		ArrayList<Ordination> ordinationer = Storage
-		// TODO
 
+		ArrayList<Ordination> listeAfOrdinationer = new ArrayList<>();
+		List<Patient> listeAfPatienter = storage.getAllPatienter();
 
-		return 0;
+		int antalOrdinationer = 0;
+
+		for (Patient patient : listeAfPatienter) {
+			for (Ordination ordination : patient.getOrdinationer()) {
+				if (ordination.getLaegemiddel().equals(laegemiddel)) {
+					double patientVægt = patient.getVaegt();
+					if (patientVægt >= vægtSlut && patientVægt <= vægtSlut) {
+						antalOrdinationer++;
+					}
+				}
+			}
+		}
+
+		return antalOrdinationer;
 	}
 
 	public List<Patient> getAllPatienter() {
