@@ -6,20 +6,19 @@ import java.time.LocalTime;
 public class DagligFast extends Ordination{
     private Dosis[] doser = new Dosis[4];
 
-    public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+    public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
         super(startDen, slutDen, laegemiddel);
-        this.doser = doser;
+        this.doser = new Dosis[] {
+                new Dosis(LocalTime.of(8, 00), morgenAntal),
+                new Dosis(LocalTime.of(12, 00), middagAntal),
+                new Dosis(LocalTime.of(18, 00), aftenAntal),
+                new Dosis(LocalTime.of(22, 00), natAntal)
+        };
     }
 
 
     public Dosis[] getDosis() {
         return doser;
-    }
-
-    public Dosis createDosis(LocalTime tid, double antal) {
-        Dosis dosis = new Dosis(tid, antal);
-
-        return dosis;
     }
 
     /* * Returnerer den totale dosis der er givet i den periode ordinationen er gyldig
