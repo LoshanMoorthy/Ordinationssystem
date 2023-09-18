@@ -44,7 +44,8 @@ public class Controller {
 			throw new IllegalArgumentException("Ugyldige datoer");
 		}
 
-		PN pn = new PN(startDen, slutDen, patient, laegemiddel, antal);
+		PN pn = new PN(startDen, slutDen, laegemiddel, antal);
+		patient.addOrdination(pn);
 
 		return pn;
 	}
@@ -58,9 +59,9 @@ public class Controller {
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
 		if (startDen.isAfter(slutDen)){
-			throw new IllegalArgumentException("Ugyldige datoer");
+			throw new IllegalArgumentException();
 		}
-		DagligFast dagligFast = new DagligFast(startDen, slutDen, patient, laegemiddel);
+		DagligFast dagligFast = new DagligFast(startDen, slutDen, laegemiddel);
 
 		return dagligFast;
 	}
@@ -87,7 +88,10 @@ public class Controller {
 	 * Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		// TODO
+		if (dato.isBefore(ordination.getStartDen()) || dato.isAfter(ordination.getSlutDen())) {
+			throw new IllegalArgumentException();
+		}
+		ordination.givDosis(dato);
 	}
 
 	/**
