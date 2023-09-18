@@ -29,10 +29,7 @@ public class DagligFast extends Ordination{
     public double samletDosis() {
         double samletDosis = 0;
         for (int i = 0; i < doser.length; i++) {
-            samletDosis = antalDage() *
-            }
-
-
+            samletDosis += doser[i].getAntal() * antalDage();
         }
         return samletDosis;
     }
@@ -42,7 +39,7 @@ public class DagligFast extends Ordination{
      * @return */
 
     public double doegnDosis() {
-        return 0;
+        return samletDosis() / antalDage();
     }
 
 
@@ -51,7 +48,7 @@ public class DagligFast extends Ordination{
      * @return */
 
     public String getType() {
-        return null;
+        return "Daglig fast";
     }
 
 }
