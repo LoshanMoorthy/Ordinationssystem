@@ -62,6 +62,7 @@ public class Controller {
 			throw new IllegalArgumentException();
 		}
 		DagligFast dagligFast = new DagligFast(startDen, slutDen, laegemiddel);
+		patient.addOrdination(dagligFast);
 
 		return dagligFast;
 	}
@@ -77,8 +78,14 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
-		// TODO
-		return null;
+		if (startDen.isAfter(slutDen)) {
+			throw new IllegalArgumentException("Ugyldige datoer");
+		}
+
+		DagligSkaev dagligSkaev = new DagligSkaev(startDen, slutDen, laegemiddel);
+		patient.addOrdination(dagligSkaev);
+
+		return dagligSkaev;
 	}
 
 	/**
