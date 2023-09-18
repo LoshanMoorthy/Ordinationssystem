@@ -12,8 +12,8 @@ public class DagligSkaev extends Ordination {
     private int mængde;
 
 
-    public DagligSkaev(LocalDate startDen, LocalDate slutDen, Patient patient, LocalTime tidspunkt, int mængde) {
-        super(startDen,slutDen, patient);
+    public DagligSkaev(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, LocalTime tidspunkt, int mængde) {
+        super(startDen,slutDen, patient, laegemiddel);
         this.tidspunkt = tidspunkt;
         this.mængde = mængde;
 
