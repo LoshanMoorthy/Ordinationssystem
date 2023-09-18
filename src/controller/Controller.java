@@ -108,7 +108,18 @@ public class Controller {
 	 * Pre: patient og lægemiddel er ikke null
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
-		if (patient.getVaegt() )
+		//TODO
+		double anbefalet = 0;
+		if(patient.getVaegt() < 25 ) {
+			anbefalet = laegemiddel.getEnhedPrKgPrDoegnLet();
+		}
+		else if(patient.getVaegt() <= 25 && patient.getVaegt() <= 120){
+			anbefalet = laegemiddel.getEnhedPrKgPrDoegnNormal();
+		}
+		else{
+			anbefalet = laegemiddel.getEnhedPrKgPrDoegnTung();
+		}
+		return anbefalet;
 	}
 
 	/**
@@ -118,7 +129,10 @@ public class Controller {
 	 */
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
+		ArrayList<Ordination> ordinationer = Storage
 		// TODO
+
+
 		return 0;
 	}
 
