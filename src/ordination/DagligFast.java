@@ -1,13 +1,14 @@
 package ordination;
 
+import java.lang.foreign.MemoryLayout;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class DagligFast extends Ordination{
     private Dosis[] doser = new Dosis[4];
 
-    public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Dosis[] doser) {
-        super(startDen, slutDen, laegemiddel);
+    public DagligFast(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, Dosis[] doser) {
+        super(startDen, slutDen, patient, laegemiddel);
         this.doser = doser;
     }
 

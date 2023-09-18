@@ -1,5 +1,6 @@
 package ordination;
 
+import java.lang.foreign.MemoryLayout;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,8 +10,8 @@ public class PN extends Ordination {
     private ArrayList<LocalDate> givetDosis = new ArrayList<>();
     private int antalGangeGivet;
 
-    public PN(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, double antalEnheder) {
-        super(startDen, slutDen, laegemiddel);
+    public PN(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel, double antalEnheder) {
+        super(startDen, slutDen, patient, laegemiddel);
         this.antalEnheder = antalEnheder;
 
     }
