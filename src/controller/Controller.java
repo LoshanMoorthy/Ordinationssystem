@@ -2,13 +2,10 @@ package controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import ordination.DagligFast;
-import ordination.DagligSkaev;
-import ordination.Laegemiddel;
-import ordination.PN;
-import ordination.Patient;
+import ordination.*;
 import storage.Storage;
 
 import javax.xml.transform.dom.DOMSource;
@@ -109,7 +106,17 @@ public class Controller {
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		//TODO
-		return 0;
+		double anbefalet = 0;
+		if(patient.getVaegt() < 25 ) {
+			anbefalet = laegemiddel.getEnhedPrKgPrDoegnLet();
+		}
+		else if(patient.getVaegt() <= 25 && patient.getVaegt() <= 120){
+			anbefalet = laegemiddel.getEnhedPrKgPrDoegnNormal();
+		}
+		else{
+			anbefalet = laegemiddel.getEnhedPrKgPrDoegnTung();
+		}
+		return anbefalet;
 	}
 
 	/**
@@ -119,7 +126,10 @@ public class Controller {
 	 */
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
+		ArrayList<Ordination> ordinationer = Storage
 		// TODO
+
+
 		return 0;
 	}
 
