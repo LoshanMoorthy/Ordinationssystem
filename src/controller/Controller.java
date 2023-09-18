@@ -11,6 +11,8 @@ import ordination.PN;
 import ordination.Patient;
 import storage.Storage;
 
+import javax.xml.transform.dom.DOMSource;
+
 public class Controller {
 	private Storage storage;
 	private static Controller controller;
@@ -58,8 +60,9 @@ public class Controller {
 		if (startDen.isAfter(slutDen)){
 			throw new IllegalArgumentException();
 		}
-		DagligFast dagligFast = new DagligFast(startDen, slutDen);
+		DagligFast dagligFast = new DagligFast(startDen, slutDen, patient, laegemiddel, );
 
+		return dagligFast;
 	}
 
 	/**
