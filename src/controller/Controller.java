@@ -42,7 +42,9 @@ public class Controller {
 			throw new IllegalArgumentException("Ugyldige datoer");
 		}
 
+		PN pn = new PN(startDen, slutDen, patient, laegemiddel, antal);
 
+		return pn;
 	}
 
 	/**
