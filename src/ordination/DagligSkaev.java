@@ -12,8 +12,8 @@ public class DagligSkaev extends Ordination {
     private int mængde;
 
 
-    public DagligSkaev(LocalDate startDen, LocalDate slutDen, LocalTime tidspunkt, int mængde) {
-        super(startDen,slutDen);
+    public DagligSkaev(LocalDate startDen, LocalDate slutDen, Patient patient, LocalTime tidspunkt, int mængde) {
+        super(startDen,slutDen, patient);
         this.tidspunkt = tidspunkt;
         this.mængde = mængde;
 
@@ -39,10 +39,7 @@ public class DagligSkaev extends Ordination {
 
     @Override
     public double doegnDosis() {
-        for(Dosis d : doser){
-
-        }
-        return 0;
+        return samletDosis() / antalDage();
     }
 
     @Override
