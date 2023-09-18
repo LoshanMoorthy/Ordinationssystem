@@ -17,7 +17,7 @@ public class DagligFast extends Ordination{
     }
 
 
-    public Dosis[] getDosis() {
+    public Dosis[] getDoser() {
         return doser;
     }
 

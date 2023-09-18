@@ -1,6 +1,5 @@
 package controller;
 
-import java.lang.foreign.MemoryLayout;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -108,13 +107,13 @@ public class Controller {
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		//TODO
 		double anbefalet = 0;
-		if(patient.getVaegt() < 25 ) {
+		if (patient.getVaegt() < 25 ) {
 			anbefalet = laegemiddel.getEnhedPrKgPrDoegnLet();
 		}
-		else if(patient.getVaegt() <= 25 && patient.getVaegt() <= 120){
+		else if (patient.getVaegt() <= 120){
 			anbefalet = laegemiddel.getEnhedPrKgPrDoegnNormal();
 		}
-		else{
+		else {
 			anbefalet = laegemiddel.getEnhedPrKgPrDoegnTung();
 		}
 		return anbefalet;
@@ -137,7 +136,7 @@ public class Controller {
 			for (Ordination ordination : patient.getOrdinationer()) {
 				if (ordination.getLaegemiddel().equals(laegemiddel)) {
 					double patientVægt = patient.getVaegt();
-					if (patientVægt >= vægtSlut && patientVægt <= vægtSlut) {
+					if (patientVægt >= vægtStart && patientVægt <= vægtSlut) {
 						antalOrdinationer++;
 					}
 				}

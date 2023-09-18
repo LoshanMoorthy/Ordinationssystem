@@ -1,6 +1,5 @@
 package ordination;
 
-import java.lang.foreign.MemoryLayout;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -41,7 +40,7 @@ public class PN extends Ordination {
 
     @Override
     public String getType() {
-        return null;
+        return "PN";
     }
 
 
