@@ -14,8 +14,6 @@ public class DagligSkaev extends Ordination {
 
     public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
         super(startDen,slutDen, laegemiddel);
-        this.tidspunkt = tidspunkt;
-        this.mængde = mængde;
 
     }
 
@@ -25,7 +23,7 @@ public class DagligSkaev extends Ordination {
 
     public void opretDosis(LocalTime tid, double antal) {
         // TODO
-        Dosis dosis = new Dosis(tidspunkt,mængde);
+        Dosis dosis = new Dosis(tid,mængde);
         doser.add(dosis);
 
     }
