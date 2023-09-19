@@ -34,8 +34,7 @@ public class PN extends Ordination {
     }
 
     public double doegnDosis() {
-        int antalDage = antalDage();
-        return antalEnheder / antalDage;
+        return (antalGangeGivet * antalEnheder) / (antalDage());
     }
 
     @Override
