@@ -16,8 +16,6 @@ public class DagligFast extends Ordination{
         };
     }
 
-
-
     public Dosis[] getDoser () {
         return doser;
     }
@@ -25,7 +23,6 @@ public class DagligFast extends Ordination{
     /* * Returnerer den totale dosis der er givet i den periode ordinationen er gyldig
      *
      * @return */
-
     public double samletDosis() {
         double samletDosis = 0;
         for (int i = 0; i < doser.length; i++) {
@@ -37,16 +34,13 @@ public class DagligFast extends Ordination{
      /* * Returnerer den gennemsnitlige dosis givet pr dag i den periode ordinationen er gyldig
      *
      * @return */
-
     public double doegnDosis() {
         return samletDosis() / antalDage();
     }
 
-
      /* * Returnerer ordinationstypen som en String
      *
      * @return */
-
     public String getType() {
         return "Daglig fast";
     }

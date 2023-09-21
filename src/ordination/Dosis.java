@@ -3,6 +3,7 @@ package ordination;
 import java.time.LocalTime;
 
 public class Dosis {
+
     private LocalTime tid;
     private double antal;
 
@@ -11,7 +12,6 @@ public class Dosis {
         this.tid = tid;
         this.antal = antal;
     }
-
     public double getAntal() {
         return antal;
     }

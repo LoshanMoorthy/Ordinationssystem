@@ -1,6 +1,7 @@
 package ordination;
 
 public class Laegemiddel {
+
     private String navn;
     private double enhedPrKgPrDoegnLet;   // faktor der anvendes hvis patient vejer < 25 kg
     private double enhedPrKgPrDoegnNormal;// faktor der anvendes hvis 25 kg <= patient vægt <= 120 kg

@@ -22,7 +22,6 @@ public class PN extends Ordination {
      * @param givesDen
      * @return
      */
-
     public boolean givDosis(LocalDate givesDen) {
         if (givesDen.isAfter(getStartDen()) && givesDen.isBefore(getSlutDen()) || givesDen.isEqual(getStartDen()) || givesDen.isEqual(getSlutDen())) {
             givetDosis.add(givesDen);
@@ -40,7 +39,6 @@ public class PN extends Ordination {
     public String getType() {
         return null;
     }
-
 
     public double samletDosis() {
         return antalEnheder;

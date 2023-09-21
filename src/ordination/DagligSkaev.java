@@ -5,12 +5,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class DagligSkaev extends Ordination {
-    // TODO
 
     private ArrayList<Dosis> doser = new ArrayList<>();
     private LocalTime[] tidspunkt;
     private int[] mængde;
-
 
     public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
         super(startDen,slutDen, laegemiddel);
@@ -31,8 +29,6 @@ public class DagligSkaev extends Ordination {
             doser.add(dosis);
         }
     }
-
-
 
     @Override
     public double samletDosis() {
