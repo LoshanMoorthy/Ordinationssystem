@@ -54,7 +54,7 @@ public class Controller {
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
 		if (startDen.isAfter(slutDen)){
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Ugyldige datoer");
 		}
 		DagligFast dagligFast = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
 		patient.addOrdination(dagligFast);

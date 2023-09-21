@@ -121,6 +121,7 @@ class DagligFastTest {
        assertTrue(Arrays.asList(doser).contains(middagDosis));
        assertTrue(Arrays.asList(doser).contains(aftenDosis));
        assertTrue(Arrays.asList(doser).contains(natDosis));
+
    }
 
 

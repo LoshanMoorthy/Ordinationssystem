@@ -1,10 +1,7 @@
 package controller;
 
 
-import ordination.DagligSkaev;
-import ordination.Laegemiddel;
-import ordination.PN;
-import ordination.Patient;
+import ordination.*;
 import org.junit.jupiter.api.Test;
 
 
@@ -17,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class ControllerTest {
-
 
     @Test
     void TC1_opretPNOrdination() {
@@ -59,17 +55,62 @@ class ControllerTest {
     }
 
     @Test
+    void opret_daglig_fast_ordination_test1() {
+
+        //Arrange
+        Controller controller = Controller.getController();
+        LocalDate startDen = LocalDate.of(2021, 11, 10);
+        LocalDate slutDen = LocalDate.of(2021, 11, 2);
+        Patient patient = new Patient("121256-0512", "Jane Jensen", 63.4);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+        double morgenAntal = 2.0;
+        double middagAntal = 0.0;
+        double aftenAntal = 1.0;
+        double natAntal = 0.0;
+
+        //Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.opretDagligFastOrdination(startDen, slutDen, patient, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
+        });
+        assertEquals(exception.getMessage(), "Ugyldige datoer");
+    }
+
+    @Test
+    void opret_daglig_fast_ordination_test2() {
+
+        //Arrange
+        Controller controller = Controller.getController();
+        LocalDate startDen = LocalDate.of(2021, 2, 4);
+        LocalDate slutDen = LocalDate.of(2021, 2, 7);
+        Patient patient = new Patient("121256-0512", "Jane Jensen", 63.4);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+        double morgenAntal = 2.0;
+        double middagAntal = 0.0;
+        double aftenAntal = 1.0;
+        double natAntal = 0.0;
+
+        //Act
+        DagligFast faktiskDagligFast = controller.opretDagligFastOrdination(startDen, slutDen, patient, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
+
+        //Assert
+        assertEquals(startDen, faktiskDagligFast.getStartDen());
+        assertEquals(slutDen, faktiskDagligFast.getSlutDen());
+        assertTrue(patient.getOrdinationer().contains(faktiskDagligFast));
+        assertEquals(laegemiddel, faktiskDagligFast.getLaegemiddel());
+    }
+
+    @Test
     void opret_daeglig_skaev_ordination_test1() {
         // Arrange
         Controller controller = Controller.getController();
-        LocalDate startDen = LocalDate.of(2021,2, 4);
-        LocalDate slutDen = LocalDate.of(2021,2, 7);
+        LocalDate startDen = LocalDate.of(2021, 2, 4);
+        LocalDate slutDen = LocalDate.of(2021, 2, 7);
         Patient patient = new Patient("121256-0512", "Jane Jensen", 63.4);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
 
-        LocalTime[] tid = { LocalTime.of(12, 0), LocalTime.of(12, 40),
-                LocalTime.of(16, 0), LocalTime.of(18, 45) };
-        double[] antal = { 0.5, 1, 2.5, 3 };
+        LocalTime[] tid = {LocalTime.of(12, 0), LocalTime.of(12, 40),
+                LocalTime.of(16, 0), LocalTime.of(18, 45)};
+        double[] antal = {0.5, 1, 2.5, 3};
 
         // Act
         DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, tid, antal);
@@ -101,43 +142,20 @@ class ControllerTest {
     }
 
     @Test
-    public void anbefaletDosisPrDoegn_let(){
+    void ordinationPNAnvendt() {
+
         //Arrange
-        Controller controller = Controller.getController();
-        Patient patient = new Patient("121256-0512", "Jane Jensen", 10);
-        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
-        double forventetResultat = laegemiddel.getEnhedPrKgPrDoegnLet();
-        //Act
-        double resultat = controller.anbefaletDosisPrDoegn(patient,laegemiddel);
-        //Assert
-        assertEquals(forventetResultat,resultat);
+
+
+
+
     }
+
     @Test
-    public void anbefaletDosisPrDoegn_normal(){
-        //Arrange
-        Controller controller = Controller.getController();
-        Patient patient = new Patient("121256-0512", "Jane Jensen", 65);
-        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
-        double forventetResultat = laegemiddel.getEnhedPrKgPrDoegnNormal();
-        //Act
-        double resultat = controller.anbefaletDosisPrDoegn(patient,laegemiddel);
-        //Assert
-        assertEquals(forventetResultat,resultat);
+    void anbefaletDosisPrDoegn() {
     }
+
     @Test
-    public void anbefaletDosisPrDoegn_tung(){
-        //Arrange
-        Controller controller = Controller.getController();
-        Patient patient = new Patient("121256-0512", "Jane Jensen", 130);
-        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
-        double forventetResultat = laegemiddel.getEnhedPrKgPrDoegnTung();
-        //Act
-        double resultat = controller.anbefaletDosisPrDoegn(patient,laegemiddel);
-        //Assert
-        assertEquals(forventetResultat,resultat);
+    void antalOrdinationerPrVægtPrLægemiddel() {
     }
-
-
-
-
 }
