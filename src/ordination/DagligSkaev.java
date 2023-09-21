@@ -14,27 +14,27 @@ public class DagligSkaev extends Ordination {
 
     public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
         super(startDen,slutDen, laegemiddel);
+        this.tidspunkt = tidspunkt;
+        this.mængde = mængde;
 
-    }
-
-    public ArrayList<Dosis> getDoser() {
-        return new ArrayList<>(doser);
     }
 
     public void opretDosis(LocalTime tid, double antal) {
         // TODO
-        Dosis dosis = new Dosis(tid,mængde);
+        Dosis dosis = new Dosis(tidspunkt,mængde);
         doser.add(dosis);
 
     }
 
-
+    public ArrayList<Dosis> getDoser() {
+        return doser;
+    }
 
     @Override
     public double samletDosis() {
         double samlet = 0;
         for(Dosis d : doser){
-            samlet += d.getAntal();
+            samlet += d.getAntal() * antalDage();
         }
         return samlet;
     }

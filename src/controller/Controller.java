@@ -66,7 +66,6 @@ public class Controller {
 	 * Opretter og returnerer en DagligSkæv ordination. Hvis startDato er efter
 	 * slutDato kastes en IllegalArgumentException og ordinationen oprettes ikke.
 	 * Hvis antallet af elementer i klokkeSlet og antalEnheder er forskellige kastes også en IllegalArgumentException.
-	 *
 	 * Pre: startDen, slutDen, patient og laegemiddel er ikke null
 	 * Pre: alle tal i antalEnheder > 0
 	 */
@@ -103,7 +102,6 @@ public class Controller {
 	 * Pre: patient og lægemiddel er ikke null
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
-		//TODO
 		double anbefalet = 0;
 		if (patient.getVaegt() < 25 ) {
 			anbefalet = laegemiddel.getEnhedPrKgPrDoegnLet();
@@ -124,8 +122,6 @@ public class Controller {
 	 */
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
-
-		ArrayList<Ordination> listeAfOrdinationer = new ArrayList<>();
 		List<Patient> listeAfPatienter = storage.getAllPatienter();
 
 		int antalOrdinationer = 0;
@@ -140,7 +136,6 @@ public class Controller {
 				}
 			}
 		}
-
 		return antalOrdinationer;
 	}
 

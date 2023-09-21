@@ -29,17 +29,17 @@ public class PN extends Ordination {
             antalGangeGivet++;
             return true;
         }
-
         return false;
     }
 
     public double doegnDosis() {
-        return (antalGangeGivet * antalEnheder) / (antalDage());
+        int antalDage = antalDage();
+        return antalEnheder / antalDage;
     }
 
     @Override
     public String getType() {
-        return "PN";
+        return null;
     }
 
 
