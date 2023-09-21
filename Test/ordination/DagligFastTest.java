@@ -8,7 +8,7 @@ class DagligFastTest {
 
 
     @Test
-    void testSamletDosis1() {
+    void test_samlet_dosis1() {
 
         //Arrange
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
@@ -30,7 +30,7 @@ class DagligFastTest {
     }
 
     @Test
-    void testSamletDosis2() {
+    void test_samlet_dosis2() {
 
         //Arrange
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
