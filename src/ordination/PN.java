@@ -24,7 +24,7 @@ public class PN extends Ordination {
      */
 
     public boolean givDosis(LocalDate givesDen) {
-        if (givesDen.isAfter(getStartDen()) && givesDen.isBefore(getSlutDen())) {
+        if (givesDen.isAfter(getStartDen()) && givesDen.isBefore(getSlutDen()) || givesDen.isEqual(getStartDen()) || givesDen.isEqual(getSlutDen())) {
             givetDosis.add(givesDen);
             antalGangeGivet++;
             return true;
@@ -33,8 +33,7 @@ public class PN extends Ordination {
     }
 
     public double doegnDosis() {
-        int antalDage = antalDage();
-        return antalEnheder / antalDage;
+        return (antalGangeGivet * antalEnheder) / (antalDage());
     }
 
     @Override
