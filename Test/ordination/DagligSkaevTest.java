@@ -85,6 +85,7 @@ class DagligSkaevTest {
         Double antal3 = 1.0;
         LocalTime[] tid = {tid1,tid2,tid3 };
         double[] antal = {antal1,antal2,antal3};
+        skaev.opretDosis(tid,antal);
 
         double forventetResultat = 6;
         //Act
@@ -95,6 +96,7 @@ class DagligSkaevTest {
 
     @Test
     void samletDosis_tc2() {
+
         Patient patient = new Patient("121256-0512", "Jane Jensen", 82);
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
         DagligSkaev skaev = new DagligSkaev(LocalDate.of(2023,9,19), LocalDate.of(2023,9,21), laegemiddel);
@@ -107,6 +109,7 @@ class DagligSkaevTest {
         LocalTime[] tid = {tid1,tid2,tid3 };
         double[] antal = {antal1,antal2,antal3};
         double forventetResultat = 17;
+        skaev.opretDosis(tid,antal);
         //Act
         Double resultat = skaev.samletDosis();
         //Assert
@@ -122,12 +125,13 @@ class DagligSkaevTest {
         LocalTime tid1 = LocalTime.of(12,30);
         LocalTime tid2 = LocalTime.of(15,0);
         LocalTime tid3 = LocalTime.of(18,0);
-        Double antal1 = 8.0;
+        Double antal1 = 10.0;
         Double antal2 = 5.0;
-        Double antal3 = 4.0;
+        Double antal3 = 3.0;
         LocalTime[] tid = {tid1,tid2,tid3 };
         double[] antal = {antal1,antal2,antal3};
-        double forventetResultat = 17/3;
+        double forventetResultat = 6.0;
+        skaev.opretDosis(tid,antal);
 
         //Act
         double resultat = skaev.doegnDosis();
