@@ -123,7 +123,7 @@ class ControllerTest {
 
     @Test
     void opret_daeglig_skaev_ordination_test2() {
-        //Arrange
+        // Arrange
         Controller controller = Controller.getController();
         LocalDate startDen = LocalDate.of(2021,1, 10);
         LocalDate slutDen = LocalDate.of(2021,1, 2);
@@ -142,13 +142,44 @@ class ControllerTest {
     }
 
     @Test
-    void ordinationPNAnvendt() {
+    void ordinationPNAnvendt_test1() {
 
-        //Arrange
+        // Arrange
+        Controller controller = Controller.getController();
+        LocalDate startDen = LocalDate.of(2021,1, 10);
+        LocalDate slutDen = LocalDate.of(2021,1, 15);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+        LocalDate dato = LocalDate.of(2021,1,9);
 
+        PN ordination = new PN(startDen, slutDen, laegemiddel, 2 );
 
+        // Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {controller.ordinationPNAnvendt(ordination, dato);
+        });
+        assertEquals(exception.getMessage(), "Ugyldige datoer");
+    }
 
+    @Test
+    void ordinationPNAnvendt_test2() {
 
+        // Arrange
+        Controller controller = Controller.getController();
+        LocalDate startDen = LocalDate.of(2021,1, 10);
+        LocalDate slutDen = LocalDate.of(2021,1, 15);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+        LocalDate dato = LocalDate.of(2021,1,9);
+        Patient patient = new Patient("121256-0512", "Jane Jensen", 55);
+
+        PN ordination = new PN(startDen, slutDen, laegemiddel, 2 );
+        patient.addOrdination(ordination);
+
+        boolean expectedOutput = true;
+
+        // Act
+        boolean actualOutput = ordination.givDosis(LocalDate.of(2021, 1, 13));
+
+        // Assert
+        assertEquals(expectedOutput, actualOutput);
     }
     @Test
     public void anbefaletDosisPrDoegn_let(){

@@ -92,7 +92,7 @@ public class Controller {
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
 		if (dato.isBefore(ordination.getStartDen()) || dato.isAfter(ordination.getSlutDen())) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Ugyldige datoer");
 		}
 		ordination.givDosis(dato);
 	}
