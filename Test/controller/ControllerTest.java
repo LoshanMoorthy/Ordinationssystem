@@ -140,4 +140,22 @@ class ControllerTest {
         });
         assertEquals(exception.getMessage(), "Ugyldige datoer");
     }
+
+    @Test
+    void ordinationPNAnvendt() {
+
+        //Arrange
+
+
+
+
+    }
+
+    @Test
+    void anbefaletDosisPrDoegn() {
+    }
+
+    @Test
+    void antalOrdinationerPrVægtPrLægemiddel() {
+    }
 }
