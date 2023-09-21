@@ -122,12 +122,12 @@ class DagligSkaevTest {
         LocalTime tid1 = LocalTime.of(12,30);
         LocalTime tid2 = LocalTime.of(15,0);
         LocalTime tid3 = LocalTime.of(18,0);
-        Double antal1 = 8.0;
+        Double antal1 = 10.0;
         Double antal2 = 5.0;
-        Double antal3 = 4.0;
+        Double antal3 = 3.0;
         LocalTime[] tid = {tid1,tid2,tid3 };
         double[] antal = {antal1,antal2,antal3};
-        double forventetResultat = 17/3;
+        double forventetResultat = 6.0;
 
         //Act
         double resultat = skaev.doegnDosis();

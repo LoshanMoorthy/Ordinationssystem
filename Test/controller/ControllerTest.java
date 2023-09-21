@@ -99,4 +99,45 @@ class ControllerTest {
         });
         assertEquals(exception.getMessage(), "Ugyldige datoer");
     }
+
+    @Test
+    public void anbefaletDosisPrDoegn_let(){
+        //Arrange
+        Controller controller = Controller.getController();
+        Patient patient = new Patient("121256-0512", "Jane Jensen", 10);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+        double forventetResultat = laegemiddel.getEnhedPrKgPrDoegnLet();
+        //Act
+        double resultat = controller.anbefaletDosisPrDoegn(patient,laegemiddel);
+        //Assert
+        assertEquals(forventetResultat,resultat);
+    }
+    @Test
+    public void anbefaletDosisPrDoegn_normal(){
+        //Arrange
+        Controller controller = Controller.getController();
+        Patient patient = new Patient("121256-0512", "Jane Jensen", 65);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+        double forventetResultat = laegemiddel.getEnhedPrKgPrDoegnNormal();
+        //Act
+        double resultat = controller.anbefaletDosisPrDoegn(patient,laegemiddel);
+        //Assert
+        assertEquals(forventetResultat,resultat);
+    }
+    @Test
+    public void anbefaletDosisPrDoegn_tung(){
+        //Arrange
+        Controller controller = Controller.getController();
+        Patient patient = new Patient("121256-0512", "Jane Jensen", 130);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+        double forventetResultat = laegemiddel.getEnhedPrKgPrDoegnTung();
+        //Act
+        double resultat = controller.anbefaletDosisPrDoegn(patient,laegemiddel);
+        //Assert
+        assertEquals(forventetResultat,resultat);
+    }
+
+
+
+
 }
