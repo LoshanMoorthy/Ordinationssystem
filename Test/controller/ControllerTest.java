@@ -58,4 +58,14 @@ class ControllerTest {
         assertEquals(laegemiddel, faktiskPN.getLaegemiddel());
         assertEquals(antal, faktiskPN.getAntalEnheder());
     }
+
+    @Test
+    void opret_daeglig_skaev_ordination_test1() {
+
+    }
+
+    @Test
+    void opret_daeglig_skaev_ordination_test2() {
+
+    }
 }

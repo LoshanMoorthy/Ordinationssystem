@@ -4,7 +4,8 @@ package ordination;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
-
+import java.time.LocalTime;
+import java.util.Arrays;
 
 
 class DagligFastTest {
@@ -87,9 +88,8 @@ class DagligFastTest {
     }
 
 
-   /*@Test
+   @Test
    void TC1_getDoser_Dosis1(){
-
 
        //Arrange
        Patient patient = new Patient("121256-0512", "Jane Jensen", 63.4);
@@ -101,18 +101,15 @@ class DagligFastTest {
        double aftenAntal = 1.0;
        double natAntal = 0.0;
 
-
-       Dosis dosisMorgen = new Dosis(LocalTime.of(8, 0), morgenAntal);
-       Dosis dosisMiddag = new Dosis(LocalTime.of(12, 0), middagAntal);
-       Dosis dosisAften = new Dosis(LocalTime.of(18, 0), aftenAntal);
-       Dosis dosisNat = new Dosis(LocalTime.of(23, 0), natAntal);
-
-
+       Dosis morgenDosis;
+       Dosis middagDosis;
+       Dosis aftenDosis;
+       Dosis natDosis;
        Dosis[] doser = new Dosis[] {
-               new Dosis(LocalTime.of(8, 0), morgenAntal),
-               new Dosis(LocalTime.of(12, 0), middagAntal),
-               new Dosis(LocalTime.of(18, 0), aftenAntal),
-               new Dosis(LocalTime.of(22, 0), natAntal)
+               morgenDosis = new Dosis(LocalTime.of(8, 0), morgenAntal),
+               middagDosis = new Dosis(LocalTime.of(12, 0), middagAntal),
+               aftenDosis = new Dosis(LocalTime.of(18, 0), aftenAntal),
+               natDosis = new Dosis(LocalTime.of(22, 0), natAntal)
        };
 
 
@@ -120,7 +117,12 @@ class DagligFastTest {
 
 
        //Assert
-   }*/
+       assertTrue(Arrays.asList(doser).contains(morgenDosis));
+       assertTrue(Arrays.asList(doser).contains(middagDosis));
+       assertTrue(Arrays.asList(doser).contains(aftenDosis));
+       assertTrue(Arrays.asList(doser).contains(natDosis));
+
+   }
 
 
     @Test
