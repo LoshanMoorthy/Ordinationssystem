@@ -217,6 +217,13 @@ class ControllerTest {
         assertEquals(forventetResultat, resultat);
     }
 
+
+    /*
+    Vi har desværre haft udfordringer med at få denne test til at fungere korrekt.
+    Det er værd at bemærke, at den fungerer som forventet i brugergrænsefladen (GUI),
+    men vi har endnu ikke kunnet identificere årsagen til,
+    at den ikke fungerer som ønsket her
+    */
     @Test
     void antalOrdinationerPrVægtPrLægemiddel() {
         // Arrange
