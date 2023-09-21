@@ -125,7 +125,6 @@ public class Controller {
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
 
-		ArrayList<Ordination> listeAfOrdinationer = new ArrayList<>();
 		List<Patient> listeAfPatienter = storage.getAllPatienter();
 
 		int antalOrdinationer = 0;

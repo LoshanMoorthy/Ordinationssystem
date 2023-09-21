@@ -3,6 +3,7 @@ package controller;
 
 import ordination.*;
 import org.junit.jupiter.api.Test;
+import storage.Storage;
 
 
 import java.time.LocalDate;
@@ -221,5 +222,51 @@ class ControllerTest {
 
     @Test
     void antalOrdinationerPrVægtPrLægemiddel() {
+        // Arrange
+
+        Controller controller = Controller.getController();
+        Storage storage = new Storage();
+
+        LocalDate startDen1 = LocalDate.of(2021,1, 2);
+        LocalDate slutDen1 = LocalDate.of(2021,1, 10);
+        Patient patient1 = new Patient("121256-0512", "Jane Jensen", 63.4);
+        Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
+
+        LocalDate startDen2 = LocalDate.of(2021,1, 2);
+        LocalDate slutDen2 = LocalDate.of(2021,1, 10);
+        Patient patient2 = new Patient("121256-0512", "Ole Hanse", 60);
+
+        LocalDate startDen3 = LocalDate.of(2021,1, 2);
+        LocalDate slutDen3 = LocalDate.of(2021,1, 10);
+        Patient patient3 = new Patient("121256-0512", "Hans Hansen", 55);
+
+        LocalTime[] tid = { LocalTime.of(12, 0), LocalTime.of(12, 40),
+                LocalTime.of(16, 0), LocalTime.of(18, 45) };
+        double[] antal = { 0.5, 1, 2.5, 3 };
+
+        storage.addLaegemiddel(laegemiddel);
+
+        DagligSkaev dagligSkaev = controller.opretDagligSkaevOrdination(startDen1, slutDen1, patient1, laegemiddel, tid, antal);
+        storage.addPatient(patient1);
+
+        double morgenAntal = 2.0;
+        double middagAntal = 0.0;
+        double aftenAntal = 1.0;
+        double natAntal = 0.0;
+
+        DagligFast dagligFast1 = controller.opretDagligFastOrdination(startDen2, slutDen2, patient2, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
+        storage.addPatient(patient2);
+
+        DagligFast dagligFast2 = controller.opretDagligFastOrdination(startDen3, slutDen3, patient3, laegemiddel, 2.0, 1.0, 5.0, 2.0);
+
+
+        int expectedOutput = 3;
+
+        // Act
+
+        int actualOutput = controller.antalOrdinationerPrVægtPrLægemiddel(40, 70, laegemiddel);
+
+        // Assert
+        assertEquals(expectedOutput, actualOutput);
     }
 }
